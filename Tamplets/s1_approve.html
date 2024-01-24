@@ -1,0 +1,145 @@
+{% load static %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Submit Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->
+
+</head>
+<body>
+	{% if user.is_authenticated %}
+	{% if user.first_name == 'Store1' %}
+	<div class="container-contact100">
+		
+		<div class="wrap-contact100">
+			
+			<div class="contact100-form-title" style="background-image: url({% static 'images/bg-01.jpg'%});">
+				<span class="contact100-form-title-1">
+										Store 
+				</span>
+
+				<span class="contact100-form-title-2">
+					Submit your document
+				</span>
+			</div>
+			{% for Message in messages %}
+			
+			
+
+			<center> <h3 style=color:red> {{ Message }}</h3> </center>
+			
+			{% endfor %}
+			
+			<form class="contact100-form validate-form" action="s1_submit?doc_no={{ doc_no }}" enctype="multipart/form-data" method="post">
+					{% csrf_token %}
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <span class="label-input100">Document No:</span>
+                        <input class="input100" type="text" name="doc_no" value={{doc_no}} readonly>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Phone is required">
+                        <span class="label-input100">Material received:</span>
+                        <select class="input100"  name="material_received" placeholder="Enter phone number">
+                            <option value="Select">Select</option>
+                              <option value="Yes">Yes</option>
+                                  <option value="No">No</option>
+                        </select>				
+                        <span class="focus-input100"></span>
+                    </div>
+				
+				
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Store person name:</span>
+					<input class="input100" type="text" name="store1_name" placeholder="Enter the name">
+					<span class="focus-input100"></span>
+				</div>
+
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">ERP person name:</span>
+					<input class="input100" type="text" name="erp_person" placeholder="Enter the name">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Image:</span>
+					<input class="input100" type="file" name="store1_img" >
+					<span class="focus-input100"></span>
+				</div>
+
+				
+
+				
+				<div class="container-contact100-form-btn">
+					<button class="contact100-form-btn">
+						<span>
+							Submit
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/animsition/js/animsition.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js'%}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/daterangepicker/moment.min.js'%}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js'%}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/countdowntime/countdowntime.js'%}"></script>
+<!--===============================================================================================-->
+	
+	
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js'%}"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+{% else %}
+<h2 style=color:red>403 - Forbidden: Access is denied.</h2>
+{% endif %}
+{% endif %}
+
+</body>
+</html>

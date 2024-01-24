@@ -1,0 +1,246 @@
+{% load static %}
+{% static 'images' as urlimage %}
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>action</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Travello template project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/news.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/news_responsive.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/destinations.css' %}">
+</head>
+<body>
+	
+<div class="super_container">
+	
+	<!-- Header -->
+
+	<header class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="header_content d-flex flex-row align-items-center justify-content-start">
+						<div class="header_content_inner d-flex flex-row align-items-end justify-content-start">
+							<div class="logo"><a href="index">Godrej</a></div>
+							<nav class="main_nav">
+								<ul class="d-flex flex-row align-items-start justify-content-start">
+                                    <li class="active"><a href="index">Home</a></li>
+									{% if user.is_authenticated %}
+									
+									<li><a href= logout >Logout</a></li> 
+									<li><a> Hello {{user.first_name}}</a></li>
+									
+
+									{% else %}
+									<li><a href= login >Login</a></li>
+									<li><a href= submit >Add Material</a></li>
+
+									{% endif %}
+
+								</ul>
+							</nav>
+							<div class="header_phone ml-auto">Doc No:MH IMS QA 07  P4 / F1 "03-06-2016"</div>
+
+							<!-- Hamburger -->
+
+							<div class="hamburger ml-auto">
+								<i class="fa fa-bars" aria-hidden="true"></i>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header_social d-flex flex-row align-items-center justify-content-start">
+			<ul class="d-flex flex-row align-items-start justify-content-start">
+				<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+			</ul>
+		</div>
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu">
+		<div class="menu_header d-flex flex-row align-items-center justify-content-start">
+			<div class="menu_logo"><a href="index.html">Godrej</a></div>
+			<div class="menu_close_container ml-auto"><div class="menu_close"><div></div><div></div></div></div>
+		</div>
+		<div class="menu_content">
+			<ul>
+				
+			</ul>
+		</div>
+		<div class="menu_social">
+			<div class="menu_phone ml-auto">Call us: 00-56 445 678 33</div>
+			<ul class="d-flex flex-row align-items-start justify-content-start">
+				<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+				<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+			</ul>
+		</div>
+	</div>
+	
+
+
+	<div class="news">
+		<div class="container">
+			<div class="row">
+
+				<!-- News Container -->
+				<div class="col-lg-8">
+					<div class="news_container">
+						
+                        <!-- News Post -->
+                        {% for mat in Material %}
+                        {% if mat.doc_no == doc_no %}
+
+
+						<div class="news_post">
+							<div class="news_post_image"><img src="{{ mat.man_img.url }}" alt=""></div>
+							<div class="news_post_content">
+								<div class="news_post_date d-flex flex-row align-items-end justify-content-start">
+									
+								</div>
+                               
+								
+                                <div class="destination item">
+									
+									<div class="destination_content">
+										
+										<div class="destination_list">
+											<ul> <div class="news_post_title"><a >Document No: {{mat.doc_no}}</a></div>
+												{% if user.first_name == 'Planning'  %}
+												<div class="news_post_title"><a href="p_approve?doc_no={{mat.doc_no}}">Approve | </a><a href="rejection?doc_no={{mat.doc_no}}">Reject </a></div>
+												{% endif %}
+												
+												{% if user.first_name == 'Store1'  %}
+												<div class="news_post_title"><a href="s1_approve?doc_no={{mat.doc_no}}">Approve | </a><a href="rejection?doc_no={{mat.doc_no}}">Reject </a></div>
+												{% endif %}
+												
+												{% if user.first_name == 'Quality'  %}
+												<div class="news_post_title"><a href="q_approve?doc_no={{mat.doc_no}}">Approve | </a><a href="rejection?doc_no={{mat.doc_no}}">Reject </a></div>
+												{% endif %}
+												
+												{% if user.first_name == 'Store2'  %}
+												<div class="news_post_title"><a href="s2_approve?doc_no={{mat.doc_no}}">Approve | </a><a href="rejection?doc_no={{mat.doc_no}}">Reject </a></div>
+												{% endif %}
+
+												{% if mat.pending_with == 'Manufacturing'  %}
+												<div class="news_post_title"><a href="man_update?doc_no={{mat.doc_no}}">Update </a></div>
+												{% endif %}
+												
+												{% if user.first_name == 'Planning' or user.first_name == 'Store1' or user.first_name == 'Quality' or user.first_name == 'Store2' %}
+												<div class="news_post_link"><a >From Manufacturing </a></div>
+												<li>Department: {{mat.department}} </li>
+												<li>Category: {{mat.category}} </li>
+												<li>Location: {{mat.location}} </li>
+												<li>Identified By: {{mat.identified_by}} </li>
+												<li>Warehouse Item: {{mat.item_warehouse}} </li>
+												<li>Item Code: {{mat.item_code}} </li>
+												<li>Quantity: {{mat.quantity}} </li>
+												<li>Unit: {{mat.unit}} </li>
+												<li>Superviser Name: {{mat.superviser_name}} </li>
+												<li>Approved By: {{mat.approved_by}} </li>
+												<li>Reason: {{mat.reason}} </li>
+												{% endif %}
+				
+												{% if user.first_name == 'Store1' or user.first_name == 'Quality' or user.first_name == 'Store2' %}
+												<div class="news_post_link"><a >From Planning </a></div>
+												<li>Planner Name: {{mat.planner_name}}  </li>
+												<li>Order Number: {{mat.order_no}}  </li>
+												<li>Pos No: {{mat.pos_no}} </li>
+												{% endif %}
+				
+												{% if user.first_name == 'Quality' or user.first_name == 'Store2' %}
+												<div class="news_post_link"><a >From Store </a></div>
+												<li>Material Received: {{mat.material_received}}</li>
+												<li>Store person name: {{mat.store1_name}}</li>
+												<li>ERP person name: {{mat.erp_person}}</li>
+												{% endif %}
+
+												{% if user.first_name == 'Store2'  %}
+												<div class="news_post_link"><a >From Quality </a></div>
+												<li>Quality Person name: {{mat.qa_name}}</li>
+												<li>Quality engineer: {{mat.qa_engineer}}</li>
+												<li>Disposition: {{mat.qa_diposition}}</li>
+												<li>Classification: {{mat.qa_classification}}</li>
+												<li>Quality Remark: {{mat.qa_remark}}</li>
+												
+
+												{% endif %}
+
+												{% if mat.pending_with == 'Manufacturing'  %}
+												<div class="news_post_link"><a >Rejection Details</a></div>
+												<li>Rejected By: {{mat.rejection_name}}</li>
+												<li>Rejection Reason: {{mat.rejection_reason}}</li>
+												
+												
+
+												{% endif %}
+
+											</ul>
+										</div>
+									</div>
+								</div>
+                                
+
+							</div>
+						</div>
+                       
+                        {% endif %}
+                        {% endfor %}
+						
+						
+					</div>
+
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	
+		</div>
+		<div class="col text-center"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </div>
+	</footer>
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js'%}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js'%}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js'%}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js'%}"></script>
+<script src="{% static 'plugins/easing/easing.js'%}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js'%}"></script>
+<script src="{% static 'js/news.js'%}"></script>
+
+
+</body>
+</html>
