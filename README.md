@@ -8,15 +8,15 @@ It has a simple and pleasant user interface using Bootstrap version 5.
 
 I developed this project using the following:
 
-Python
-Django
-HTML
-CSS
-JavaScript
-jQuery
-Bootstrap v5
-Material Design Bootstrap Template
-Font-Awesome
+Python |
+Django |
+HTML |
+CSS |
+JavaScript |
+jQuery |
+Bootstrap v5 |
+Material Design Bootstrap Template |
+Font-Awesome 
 
 The system can be accessed by 2 users which are the admin and staff. The admin has the privilege to access Django's admin panel/site and manage the list of users. The staff users are only allowed to manage the site. 
 
